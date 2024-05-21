@@ -11,8 +11,6 @@ BEGIN
     UPDATE PEDIDOS
     SET VALORTOTAL = PRECIO
     WHERE CODIGOPEDIDO = p_codigoPedido;
-    
-    COMMIT;
 END actualizar_precio_productoTotal;
 /
 
