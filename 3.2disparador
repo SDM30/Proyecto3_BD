@@ -1,0 +1,16 @@
+CREATE OR REPLACE TRIGGER no_ser_propioJefe
+BEFORE INSERT OR UPDATE ON EMPLEADOS
+FOR EACH ROW
+BEGIN
+    if(:new.codigoempleado = :new.codigojefe) then
+    RAISE_APPLICATION_ERROR(-20500, 'el empleado no puede ser su propio jefe');
+    end if;
+END;
+/
+BEGIN
+UPDATE EMPLEADOS
+SET CODIGOJEFE = 1
+WHERE CODIGOEMPLEADO = 1;
+END;
+/
+
