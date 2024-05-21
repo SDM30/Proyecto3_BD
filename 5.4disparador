@@ -1,0 +1,8 @@
+CREATE OR REPLACE TRIGGER trg_valortotal_pedido
+BEFORE INSERT OR UPDATE OR DELETE ON DETALLEPEDIDOS
+FOR EACH ROW
+BEGIN
+    actualizar_precio_productos();
+END;
+
+
