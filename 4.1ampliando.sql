@@ -1,0 +1,2 @@
+ALTER TABLE pedidos
+ADD valortotal DECIMAL(10,2) DEFAULT 0;
