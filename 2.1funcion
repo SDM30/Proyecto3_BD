@@ -1,0 +1,24 @@
+SET SERVEROUTPUT ON;
+CREATE OR REPLACE FUNCTION producto_mas_vendido RETURN NUMBER
+IS
+    mas_vendido NUMBER;
+BEGIN
+    SELECT MAX(T1.CANTIDAD * PRODUCTOS.PRECIOVENTA)
+    INTO mas_vendido
+    FROM (
+            SELECT CODIGOPRODUCTO, SUM(CANTIDAD) AS CANTIDAD
+            FROM DETALLEPEDIDOS
+            GROUP BY CODIGOPRODUCTO
+         ) T1
+    JOIN PRODUCTOS ON T1.CODIGOPRODUCTO = PRODUCTOS.CODIGOPRODUCTO;
+
+    RETURN mas_vendido;
+END producto_mas_vendido;
+/
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Producto más vendido: ' || producto_mas_vendido());
+END;
+/
+
+
+
